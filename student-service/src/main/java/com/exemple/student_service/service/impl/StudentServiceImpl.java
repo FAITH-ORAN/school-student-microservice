@@ -51,10 +51,12 @@ public class StudentServiceImpl implements IStudentService {
         Student student = studentRepository.findById(id).orElse(null);
         if (student == null) return null;
 
+
         SchoolDTO school = schoolClient.getSchoolById(student.getSchoolId());
 
         return new StudentWithSchool(student, school);
     }
+
 
     @Override
     public void deleteById(String id) {

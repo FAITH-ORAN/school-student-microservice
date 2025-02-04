@@ -10,3 +10,4 @@ public interface SchoolClient {
     @GetMapping("/schools/{id}")
     SchoolDTO getSchoolById(@PathVariable Long id);
 }
+

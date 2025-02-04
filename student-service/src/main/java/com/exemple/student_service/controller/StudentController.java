@@ -1,5 +1,6 @@
 package com.exemple.student_service.controller;
 
+import com.exemple.student_service.dto.StudentWithSchool;
 import com.exemple.student_service.entity.Student;
 import com.exemple.student_service.service.IStudentService;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,10 @@ public class StudentController {
     @GetMapping("/{id}")
     public ResponseEntity<Student> getById(@PathVariable String id) {
         return ResponseEntity.ok(studentService.findById(id));
+    }
+    @GetMapping("/{id}/with-school")
+    public ResponseEntity<StudentWithSchool> getByIdWithSchool(@PathVariable String id) {
+        return ResponseEntity.ok(studentService.findByIdWithSchool(id));
     }
 
     @PutMapping("/{id}")
