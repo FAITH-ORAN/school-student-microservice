@@ -5,7 +5,7 @@ HELP.md
 
 
 target/
-.DS-Store
+.DS_Store
 out/
 
 
