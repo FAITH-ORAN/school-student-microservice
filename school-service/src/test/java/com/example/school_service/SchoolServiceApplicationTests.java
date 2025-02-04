@@ -1,4 +1,4 @@
-package com.school_service.school_service;
+package com.example.school_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,5 +9,4 @@ class SchoolServiceApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
