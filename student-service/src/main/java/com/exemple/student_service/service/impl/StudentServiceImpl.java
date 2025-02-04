@@ -31,8 +31,16 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public Student findById(String id) {
-        return studentRepository.findById(id).orElse(null);
+    public StudentWithSchool findByIdWithSchool(String id) {
+        Student student = studentRepository.findById(id).orElse(null);
+        if (student == null) {
+            return null;
+        }
+
+        // 🔥 Appel à `school-service` pour récupérer les infos de l'école associée
+        SchoolDTO school = schoolClient.getSchoolById(student.getSchoolId());
+
+        return new StudentWithSchool(student, school);
     }
 
     @Override
@@ -45,18 +53,6 @@ public class StudentServiceImpl implements IStudentService {
                     return studentRepository.save(student);
                 }).orElse(null);
     }
-
-    @Override
-    public StudentWithSchool findByIdWithSchool(String id) {
-        Student student = studentRepository.findById(id).orElse(null);
-        if (student == null) return null;
-
-
-        SchoolDTO school = schoolClient.getSchoolById(student.getSchoolId());
-
-        return new StudentWithSchool(student, school);
-    }
-
 
     @Override
     public void deleteById(String id) {

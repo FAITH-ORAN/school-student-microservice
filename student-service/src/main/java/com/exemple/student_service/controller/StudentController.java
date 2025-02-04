@@ -28,11 +28,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getById(@PathVariable String id) {
-        return ResponseEntity.ok(studentService.findById(id));
-    }
-    @GetMapping("/{id}/with-school")
-    public ResponseEntity<StudentWithSchool> getByIdWithSchool(@PathVariable String id) {
+    public ResponseEntity<StudentWithSchool> getById(@PathVariable String id) {
         return ResponseEntity.ok(studentService.findByIdWithSchool(id));
     }
 
