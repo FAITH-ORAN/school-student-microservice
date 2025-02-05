@@ -36,8 +36,6 @@ public class StudentServiceImpl implements IStudentService {
         if (student == null) {
             return null;
         }
-
-        // 🔥 Appel à `school-service` pour récupérer les infos de l'école associée
         SchoolDTO school = schoolClient.getSchoolById(student.getSchoolId());
 
         return new StudentWithSchool(student, school);

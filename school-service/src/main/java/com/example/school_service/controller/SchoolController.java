@@ -13,7 +13,6 @@ import java.util.List;
 public class SchoolController {
     private final ISchoolService schoolService;
 
-
     public SchoolController(ISchoolService schoolService) {
         this.schoolService = schoolService;
     }

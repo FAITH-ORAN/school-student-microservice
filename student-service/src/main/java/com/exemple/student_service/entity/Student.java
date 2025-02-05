@@ -12,11 +12,9 @@ public class Student {
     private String genre;
     private Long schoolId;
 
-    // Default constructor (Obligatoire pour MongoDB)
     public Student() {
     }
 
-    // Constructor avec paramètres
     public Student(String id, String name, String genre, Long schoolId) {
         this.id = id;
         this.name = name;

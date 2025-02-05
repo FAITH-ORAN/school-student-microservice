@@ -13,7 +13,6 @@ public class School {
     private String address;
     private String directorName;
 
-    // 🏗️ Constructeurs
     public School() {}
 
     public School(Long id, String name, String address, String directorName) {
@@ -23,7 +22,7 @@ public class School {
         this.directorName = directorName;
     }
 
-    // 📌 Getters & Setters
+    // Getters & Setters
     public Long getId() {
         return id;
     }
