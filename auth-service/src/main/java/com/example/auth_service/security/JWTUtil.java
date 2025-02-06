@@ -2,6 +2,7 @@ package com.example.auth_service.security;
 
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -10,29 +11,34 @@ import java.util.Date;
 
 @Component
 public class JWTUtil {
-    private static final String SECRET_KEY = "myverystrongsecretkeyformyapplication";// to change after
-    private final SecretKey signKey;
+    private final SecretKey key;
 
-    public JWTUtil() {
-        this.signKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8)); // ✅ Correction ici
+    public JWTUtil(@Value("${jwt.secret}") String secretKey) {
+        System.out.println(" key secret " +  secretKey);
+        this.key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * Generate a JWT token for the given username
+     */
     public String generateToken(String username) {
         return Jwts.builder()
                 .subject(username)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 3600000)) // 1h
-                .signWith(signKey)
+                .signWith(key)
                 .compact();
     }
 
+    /**
+     * Extracts the username from the given JWT token
+     */
     public String extractUsername(String token) {
         return Jwts.parser()
-                .verifyWith(signKey)
+                .verifyWith(key)
                 .build()
                 .parseSignedClaims(token)
                 .getPayload()
                 .getSubject();
     }
-
 }

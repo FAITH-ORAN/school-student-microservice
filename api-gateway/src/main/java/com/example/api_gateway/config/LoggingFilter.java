@@ -18,7 +18,7 @@ public class LoggingFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, org.springframework.cloud.gateway.filter.GatewayFilterChain chain) {
         String incomingUrl = exchange.getRequest().getURI().toString();
-        logger.info("🚀 Incoming request -> Method: {}, URI: {}", exchange.getRequest().getMethod(), incomingUrl);
+        logger.info(" Incoming request -> Method: {}, URI: {}", exchange.getRequest().getMethod(), incomingUrl);
 
         return chain.filter(exchange).then(Mono.fromRunnable(() -> {
 
@@ -27,7 +27,7 @@ public class LoggingFilter implements GlobalFilter, Ordered {
             if (outgoingUri != null) {
                 logger.info("🔀 Routed to -> URI: {}", outgoingUri.toString());
             } else {
-                logger.warn("⚠️ No outgoing URL found, routing might have failed!");
+                logger.warn(" No outgoing URL found, routing might have failed!");
             }
         }));
     }
