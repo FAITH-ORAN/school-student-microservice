@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
             throw new IllegalStateException("User already exists");
         }
 
-        // Encoder le mot de passe
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         return userRepository.save(user);

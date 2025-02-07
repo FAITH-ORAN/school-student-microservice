@@ -14,7 +14,6 @@ public class JWTUtil {
     private final SecretKey key;
 
     public JWTUtil(@Value("${jwt.secret}") String secretKey) {
-        System.out.println(" key secret " +  secretKey);
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
     }
 

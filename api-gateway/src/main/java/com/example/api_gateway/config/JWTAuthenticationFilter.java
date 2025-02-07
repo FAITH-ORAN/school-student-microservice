@@ -37,7 +37,6 @@ public class JWTAuthenticationFilter implements GlobalFilter, Ordered {
 
         // Extract Token
         String authorizationHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
-        System.out.println("🔍 Authorization Header reçu : " + authorizationHeader);
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             authorizationHeader = authorizationHeader.substring(7);
@@ -65,7 +64,6 @@ public class JWTAuthenticationFilter implements GlobalFilter, Ordered {
     private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus status) {
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(status);
-        System.out.println("ERROR : " + err);
         return response.setComplete();
     }
 

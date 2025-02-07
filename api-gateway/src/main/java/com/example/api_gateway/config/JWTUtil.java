@@ -17,7 +17,6 @@ public class JWTUtil {
     private final SecretKey key;
 
     public JWTUtil(@Value("${jwt.secret}") String secretKey) {
-        System.out.println("Secret key in api gateway    "  + secretKey);
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
     }
 
@@ -27,10 +26,10 @@ public class JWTUtil {
                     .verifyWith(key)
                     .build()
                     .parseSignedClaims(token);
-            System.out.println("Token est valide ✅");
+            System.out.println("Token valid ✅");
             return true;
         } catch (Exception e) {
-            System.out.println("Erreur de validation du token ❌: " + e.getMessage());
+            System.out.println("Validation error  token ❌: " + e.getMessage());
             return false;
         }
     }
